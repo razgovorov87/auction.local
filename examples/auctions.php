@@ -128,7 +128,7 @@ require '../db.php';
 									<span>Аукционов в базе</span>
 									<p>
 										<?php 
-											$auctions = R::count('auctions');
+											$auctions = R::count('auction');
 											echo $auctions;
 										 ?>
 									</p>
@@ -147,9 +147,6 @@ require '../db.php';
 					
 					<div class="page-header">
 						<h3 class="title">Аукционы</h3>
-						<a href="#" class="button">Добавить запись</a>
-						<a href="#" class="button">Изменить запись</a>
-						<a href="#" class="button">Удалить запись</a>
 					</div>
 
 					<div class="cards-row temp1">
@@ -170,13 +167,13 @@ require '../db.php';
 									<tbody>
 
 											<?php 
-												$auctions = R::findAll('auctions');
+												$auctions = R::findAll('auction');
 												foreach ( $auctions as $auction ) {
 													echo '<tr>
 																	<th>'.$auction['id'].'</th>
 																	<th>'.$auction['title'].'</th>
 																	<th>'.date("d.m.Y", strtotime($auction['start_date'])).'</th>
-																	<th>'.$auction['specification'].'</th>
+																	<th>'.$auction->specification['title'].'</th>
 																	</tr>';
 												}
 											 ?>

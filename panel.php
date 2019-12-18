@@ -128,7 +128,7 @@ require 'db.php';
 									<span>Аукционов в базе</span>
 									<p>
 										<?php 
-											$auctions = R::count('auctions');
+											$auctions = R::count('auction');
 											echo $auctions;
 										 ?>
 									</p>
@@ -170,9 +170,9 @@ require 'db.php';
 											$lots = R::findAll('lots', "ORDER BY id ASC LIMIT 8");
 											foreach ( $lots as $lot) {
 													echo '<tr>
-															<th scope="col" class="th_title">'.$lot['object'].'</th>
+															<th scope="col" class="th_title">'.$lot->item['title'].'</th>
 															<th scope="col">'.date("d.m.Y", strtotime($lot['start_date'])).'</th>
-															<th scope="col">'.$lot['auction'].'</th>
+															<th scope="col">'.$lot->auction['title'].'</th>
 															<th scope="col">'.$lot['start_price'].'₽</th>
 														</tr>';
 											}

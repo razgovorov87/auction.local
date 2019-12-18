@@ -128,7 +128,7 @@ require '../db.php';
 									<span>Аукционов в базе</span>
 									<p>
 										<?php 
-											$auctions = R::count('auctions');
+											$auctions = R::count('auction');
 											echo $auctions;
 										 ?>
 									</p>
@@ -145,7 +145,9 @@ require '../db.php';
 
 					</div>
 					
-					<h3 class="page-header">Лоты</h3>
+					<div class="page-header">
+						<h3 class="title">Лоты</h3>
+					</div>
 
 					<div class="cards-row temp1">
 						<div class="card-table">
@@ -175,7 +177,7 @@ require '../db.php';
 													echo '<tr>
 																	<th>'.$lot['id'].'</th>
 																	<th>'.$lot['number'].'</th>
-																	<th>'.$lot['object'].'</th>
+																	<th>'.$lot->item['title'].'</th>
 																	<th>'.date("d.m.Y", strtotime($lot['start_date'])).'</th>
 																	<th>'.$lot['start_price'].'</th>';
 																	if (empty($lot['final_price'])) {
@@ -184,15 +186,16 @@ require '../db.php';
 																	{
 																		echo '<th>'.$lot['final_price'].'</th>';
 																	}
-																	echo '<th>'.$lot['seller'].'</th>';
-																	if (empty($lot['buyer'])) {
+																	echo '<th>'.$lot->fetchAs('peoples')->seller['name'].'</th>';
+																	$buyer = $lot->fetchAs('peoples')->buyer['name'];
+																	if (empty($buyer)) {
 																		echo '<th style="display: flex; justify-content: center; align-items: center; font-size: 13px; color: #f5365c;"><i class="fas fa-times"></i></th>';
 																	} else 
 																	{
-																		echo '<th>'.$lot['final_price'].'</th>';
+																		echo '<th>'.$buyer.'</th>';
 																	}
-																	echo '<th>'.$lot['auction'].'</th>';
-																	if ($lot['status'] == "Продано") {
+																	echo '<th>'.$lot->auction['title'].'</th>';
+																	if ($lot->status['title'] == "Продано") {
 																		echo '<th style="display: flex; justify-content: center; align-items: center; font-size: 13px; color: #2dce89;"><i class="fas fa-check" style="margin-right: 10px"></i>Продано</th>';
 																	} else 
 																	{
