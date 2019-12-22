@@ -156,57 +156,319 @@ require '../db.php';
 
 							<div class="accordion__item">
 								<a href="#req1" class="accordion__title accordion__trigger">Вывести список продавцов, выставлявших свой товар хотя бы на одном аукционе в течение последнего года.<i class="fas fa-arrow-down"></i></a>
-								<div id="req1" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req1" class="accordion__content"><p>
+
+									<table>
+										<thead>
+											<tr>
+												<th>ФИО</th>
+												<th>Аукцион</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT DISTINCT `name`, `surname`, auction.title as auc FROM `peoples` JOIN lots ON peoples.id = lots.seller_id JOIN auction ON lots.auction_id = auction.id WHERE auction.start_date > '2018-11-09' GROUP BY `surname`");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['name'].' '.$r['surname'].'</th>
+																	<th>'.$r['auc'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req2" class="accordion__title accordion__trigger">Вывести список покупателей, которые приобрели товар на аукционах последних
 трех месяцев, и сумма приобретенного товара превысила 100000 рублей.<i class="fas fa-arrow-down"></i></a>
-								<div id="req2" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req2" class="accordion__content"><p>
+
+								<table>
+										<thead>
+											<tr>
+												<th>ФИО</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT `name`, `surname` FROM `peoples` JOIN lots ON peoples.id = lots.buyer_id WHERE lots.final_price > 100000");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['name'].' '.$r['surname'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req3" class="accordion__title accordion__trigger"> Подсчитайте количество лотов, которые были выставлены на каждом аукционе,
 проводимым фирмой. Упорядочите аукционы по возрастанию времени их проведения.<i class="fas fa-arrow-down"></i></a>
-								<div id="req3" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req3" class="accordion__content"><p>
+
+								<table>
+										<thead>
+											<tr>
+												<th>Название аукциона</th>
+												<th>Количество лотов</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT auction.title, count(lots.auction_id) as quantity FROM lots
+JOIN auction ON lots.auction_id = auction.id
+GROUP BY `title`
+ORDER BY auction.start_date DESC");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['title'].'</th>
+																	<th>'.$r['quantity'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req4" class="accordion__title accordion__trigger"> Выведите сведения о лотах, конечная цена которых больше начальной в 20 раз.<i class="fas fa-arrow-down"></i></a>
-								<div id="req4" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req4" class="accordion__content"><p>
+
+								<table>
+										<thead>
+											<tr>
+												<th>Название</th>
+												<th>Номер</th>
+												<th>Дата старта</th>
+												<th>Стартовая цена</th>
+												<th>Конечная цена</th>
+												<th>Продавец</th>
+												<th>Покупатель</th>
+												<th>Аукцион</th>
+												<th>Статус</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT * FROM `lots` WHERE `final_price`/`start_price` > 20");
+												$bean = R::convertToBeans('lots', $req);
+
+												foreach($bean as $r) {
+													echo '<tr>
+																	<th>'.$r->item['title'].'</th>
+																	<th>'.$r['number'].'</th>
+																	<th>'.$r['start_date'].'</th>
+																	<th>'.$r['start_price'].'</th>
+																	<th>'.$r['final_price'].'</th>
+																	<th>'.$r->fetchAs('peoples')->seller['name'].'</th>
+																	<th>'.$r->fetchAs('peoples')->buyer['name'].'</th>
+																	<th>'.$r->auction['title'].'</th>
+																	<th>'.$r->status['title'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req5" class="accordion__title accordion__trigger"> Получите таблицу с распределением сумм денег, которые получила какая-либо
 фирма-продавец с начала выставления ею лотов на аукционах до настоящего времени <br> с шагом в полгода.<i class="fas fa-arrow-down"></i></a>
-								<div id="req5" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req5" class="accordion__content"><p>
+									
+								<table>
+										<thead>
+											<tr>
+												<th>Палундра!!! Ты это не сделал!</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req6" class="accordion__title accordion__trigger">Определите место, где наиболее часто проводились аукционы фирмой.<i class="fas fa-arrow-down"></i></a>
-								<div id="req6" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req6" class="accordion__content"><p>
+									
+								<table>
+										<thead>
+											<tr>
+												<th>Название аукциона</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT title 
+FROM (SELECT auction.title as title, COUNT(lots.auction_id) as quantity FROM auction 
+JOIN lots ON lots.auction_id = auction.id
+GROUP BY auction.title ORDER BY quantity DESC LIMIT 1) as x");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['title'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req7" class="accordion__title accordion__trigger">Выведите сведения о наиболее прибыльном аукционе, проводимом фирмой.<i class="fas fa-arrow-down"></i></a>
-								<div id="req7" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req7" class="accordion__content"><p>
+									
+								<table>
+										<thead>
+											<tr>
+												<th>Название аукциона</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT title FROM (SELECT auction.title as title, SUM(lots.final_price) as quantity FROM auction
+JOIN lots ON lots.auction_id = auction.id
+GROUP BY auction.title  
+ORDER BY `quantity` DESC LIMIT 1) as x");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['title'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+
+								</p></div>
 							</div>
 
 
 							<div class="accordion__item">
 								<a href="#req8" class="accordion__title accordion__trigger">Ранжируйте список покупателей по сумме приобретенных ими вещей на аукционах.<i class="fas fa-arrow-down"></i></a>
-								<div id="req8" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req8" class="accordion__content"><p>
+									
+								<table>
+										<thead>
+											<tr>
+												<th>ФИО</th>
+												<th>Сумма</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT peoples.name, peoples.surname, SUM(lots.final_price) as quantity FROM peoples
+JOIN lots ON lots.buyer_id = peoples.id
+GROUP BY peoples.surname
+ORDER BY quantity DESC");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['name'].' '.$r['surname'].'</th>
+																	<th>'.$r['quantity'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req9" class="accordion__title accordion__trigger">Определите вещи, которые выставлялись фирмой на нескольких аукционах прежде, чем были проданы.<i class="fas fa-arrow-down"></i></a>
-								<div id="req9" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req9" class="accordion__content"><p>
+									
+									<table>
+										<thead>
+											<tr>
+												<th>Номер</th>
+												<th>Начальная стоимость</th>
+												<th>Дата проведения</th>
+												<th>Аукцион</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT lots.number, lots.start_price, lots.start_date, auction.title as auc FROM (SELECT COUNT(*) as num, item.title, item.id as iden FROM item 
+JOIN lots ON lots.item_id = item.id
+GROUP BY item.title
+HAVING num > 1) as x, lots
+JOIN auction ON lots.auction_id = auction.id
+WHERE iden = lots.item_id");
+												$bean = R::convertToBeans('lots', $req);
+
+												foreach($bean as $r) {
+													echo '<tr>
+																	<th>'.$r['number'].'</th>
+																	<th>'.$r['start_price'].'</th>
+																	<th>'.$r['start_date'].'</th>
+																	<th>'.$r['auc'].'</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 
 							<div class="accordion__item">
 								<a href="#req10" class="accordion__title accordion__trigger">Определите минимальную, максимальную и среднюю цену, которая была дана
 за вещи выставляемые на аукционе.<i class="fas fa-arrow-down"></i></a>
-								<div id="req10" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+								<div id="req10" class="accordion__content"><p>
+									
+								<table>
+										<thead>
+											<tr>
+												<th>Название</th>
+												<th>Сумма:</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+												$req = R::getAll("SELECT title, MIN(price) as pri FROM (SELECT item.title as title, lots.final_price as price FROM lots
+JOIN item ON lots.item_id = item.id WHERE lots.final_price != 0 ORDER BY price) as q
+
+UNION ALL 
+SELECT title, MAX(price) FROM (SELECT item.title as title, lots.final_price as price FROM lots
+JOIN item ON lots.item_id = item.id WHERE lots.final_price != 0 ORDER BY price DESC LIMIT 1) as q
+
+UNION ALL 
+SELECT 'Средняя цена:', AVG(price) FROM (SELECT item.title as title, lots.final_price as price FROM lots
+JOIN item ON lots.item_id = item.id WHERE lots.final_price != 0) as q");
+
+												foreach($req as $r) {
+													echo '<tr>
+																	<th>'.$r['title'].'</th>
+																	<th>'.$r['pri'].' ₽</th>
+																</tr>';
+												}
+											 ?>
+										</tbody>
+									</table>
+
+								</p></div>
 							</div>
 						</div>
 					</div>
