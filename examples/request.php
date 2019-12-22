@@ -7,6 +7,7 @@ require '../db.php';
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,700i&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/4e8cfbf59f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/accordion.css">
 </head>
 <body class="admin_panel">
 	
@@ -147,44 +148,68 @@ require '../db.php';
 					</div>
 					
 					<div class="page-header">
-						<h3 class="title">Аукционы</h3>
+						<h3 class="title">Лоты</h3>
 					</div>
 
-					<div class="cards-row temp1">
-						<div class="card-table auctions">
+					<div class="accordion">
+						<div class="container">
 
-							<div class="table-responsive">
+							<div class="accordion__item">
+								<a href="#req1" class="accordion__title accordion__trigger">Вывести список продавцов, выставлявших свой товар хотя бы на одном аукционе в течение последнего года.<i class="fas fa-arrow-down"></i></a>
+								<div id="req1" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
 
-								<table class="table">
-								
-									<thead class="thead-light">
-										<tr class="title">
-												<th>id</th>
-												<th>Название</th>
-												<th>Дата старта</th>
-												<th>Спецификация</th>
-										</tr>
-									</thead>
-									<tbody>
+							<div class="accordion__item">
+								<a href="#req2" class="accordion__title accordion__trigger">Вывести список покупателей, которые приобрели товар на аукционах последних
+трех месяцев, и сумма приобретенного товара превысила 100000 рублей.<i class="fas fa-arrow-down"></i></a>
+								<div id="req2" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
 
-											<?php 
-												$auctions = R::findAll('auction');
-												foreach ( $auctions as $auction ) {
-													echo '<tr>
-																	<th>'.$auction['id'].'</th>
-																	<th>'.$auction['title'].'</th>
-																	<th>'.date("d.m.Y", strtotime($auction['start_date'])).'</th>
-																	<th>'.$auction->specification['title'].'</th>
-																	</tr>';
-												}
-											 ?>
+							<div class="accordion__item">
+								<a href="#req3" class="accordion__title accordion__trigger"> Подсчитайте количество лотов, которые были выставлены на каждом аукционе,
+проводимым фирмой. Упорядочите аукционы по возрастанию времени их проведения.<i class="fas fa-arrow-down"></i></a>
+								<div id="req3" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
 
-									</tbody>
-								</table>
+							<div class="accordion__item">
+								<a href="#req4" class="accordion__title accordion__trigger"> Выведите сведения о лотах, конечная цена которых больше начальной в 20 раз.<i class="fas fa-arrow-down"></i></a>
+								<div id="req4" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
 
+							<div class="accordion__item">
+								<a href="#req5" class="accordion__title accordion__trigger"> Получите таблицу с распределением сумм денег, которые получила какая-либо
+фирма-продавец с начала выставления ею лотов на аукционах до настоящего времени <br> с шагом в полгода.<i class="fas fa-arrow-down"></i></a>
+								<div id="req5" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
+
+							<div class="accordion__item">
+								<a href="#req6" class="accordion__title accordion__trigger">Определите место, где наиболее часто проводились аукционы фирмой.<i class="fas fa-arrow-down"></i></a>
+								<div id="req6" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
+
+							<div class="accordion__item">
+								<a href="#req7" class="accordion__title accordion__trigger">Выведите сведения о наиболее прибыльном аукционе, проводимом фирмой.<i class="fas fa-arrow-down"></i></a>
+								<div id="req7" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
+
+
+							<div class="accordion__item">
+								<a href="#req8" class="accordion__title accordion__trigger">Ранжируйте список покупателей по сумме приобретенных ими вещей на аукционах.<i class="fas fa-arrow-down"></i></a>
+								<div id="req8" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
+
+							<div class="accordion__item">
+								<a href="#req9" class="accordion__title accordion__trigger">Определите вещи, которые выставлялись фирмой на нескольких аукционах прежде, чем были проданы.<i class="fas fa-arrow-down"></i></a>
+								<div id="req9" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
+
+							<div class="accordion__item">
+								<a href="#req10" class="accordion__title accordion__trigger">Определите минимальную, максимальную и среднюю цену, которая была дана
+за вещи выставляемые на аукционе.<i class="fas fa-arrow-down"></i></a>
+								<div id="req10" class="accordion__content"><p>asdasfskdgnksdlgnkla'dgnkl'dnfkgl'dnfkgl</p></div>
+							</div>
 						</div>
 					</div>
-
 			</div>
 	</div>
 

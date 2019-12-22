@@ -1,7 +1,7 @@
 <?php 
 
-require 'libs/rb.php';
-R::setup( 'mysql:host=localhost;dbname=auctions',
+require 'libs/rb-mysql.php';
+R::setup('mysql:host=localhost;dbname=auctions',
         'root', '' );
 
 session_start();

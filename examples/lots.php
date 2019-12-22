@@ -17,6 +17,7 @@ require '../db.php';
 			<li class="item active"><a href="../panel.php"><i class="fas fa-desktop"></i>Панель управления</a></li>
 			<li class="item"><a href="lots.php"><i class="fas fa-ellipsis-v"></i>Лоты</a></li>
 			<li class="item"><a href="auctions.php"><i class="fas fa-gavel"></i>Аукционы</a></li>
+			<li class="item"><a href="request.php"><i class="fas fa-info"></i>Запросы</a></li>
 		</ul>
 		<hr>
 		<strong>Привет, <?php echo $_SESSION['logged_user']->login; ?>!</strong>
@@ -222,8 +223,8 @@ require '../db.php';
 			</div>
 			<div class="footer-menu">
 				<ul class="menu footer">
-					<li><a href="examples/install.php">Создать стуктуру</a></li>
-					<li><a href="examples/delete.php">Сброс данных</a></li>
+					<li><a href="install.php">Создать стуктуру</a></li>
+					<li><a href="delete.php">Сброс данных</a></li>
 				</ul>
 			</div>
 		</div>

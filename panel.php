@@ -1,5 +1,7 @@
 <?php 
 require 'db.php';
+$profits = R::getAll("SELECT m.Month, SUM(lots.final_price)/1000 as price, lots.start_date FROM lots RIGHT JOIN ( SELECT 01 num, 'Jan' AS MONTH UNION SELECT 02 num, 'Feb' AS MONTH UNION SELECT 03 num, 'Mar' AS MONTH UNION SELECT 04 num, 'Apr' AS MONTH UNION SELECT 05 num, 'May' AS MONTH UNION SELECT 06 num, 'Jun' AS MONTH UNION SELECT 07 num, 'Jul' AS MONTH UNION SELECT 08 num, 'Aug' AS MONTH UNION SELECT 09 num, 'Sep' AS MONTH UNION SELECT 10 num, 'Oct' AS MONTH UNION SELECT 11 num, 'Nov' AS MONTH UNION SELECT 12 num, 'Dec' AS MONTH ) AS m ON month(lots.start_date) = m.num GROUP BY m.Month ORDER BY m.num");
+
 ?>
 <head>
 	<meta charset="UTF-8">
@@ -17,6 +19,7 @@ require 'db.php';
 			<li class="item active"><a href="panel.php"><i class="fas fa-desktop"></i>Панель управления</a></li>
 			<li class="item"><a href="examples/lots.php"><i class="fas fa-ellipsis-v"></i>Лоты</a></li>
 			<li class="item"><a href="examples/auctions.php"><i class="fas fa-gavel"></i>Аукционы</a></li>
+			<li class="item"><a href="examples/request.php"><i class="fas fa-info"></i>Запросы</a></li>
 		</ul>
 		<hr>
 		<strong>Привет, <?php echo $_SESSION['logged_user']->login; ?>!</strong>
@@ -56,12 +59,11 @@ require 'db.php';
 
 
 					<div class="cards-row temp-1-1-1-1">
-
 						<div class="card_body card_profit">
 							<div class="title">
 								<div class="details">
 									<span>Заработок</span>
-									<p>
+									<p id="profit">
 										<?php 
 												$profit = R::getAll('SELECT SUM(final_price) as sum FROM lots');
 												foreach ( $profit as $pr) {
@@ -191,6 +193,18 @@ require 'db.php';
 							</div>
 
 							<div class="chart">
+								
+								<script>
+
+									   var $chart_data = <? echo '[';
+																						foreach( $profits as $profit) {
+																							if ($profit['price'] == 0) {
+																								echo '0';
+																							} else echo $profit['price'];
+																							echo ',';
+																						}
+																					echo ']'; ?>;
+								</script>
                 <canvas id="chart-orders" class="chart-canvas"></canvas>
               </div>
 						</div>
