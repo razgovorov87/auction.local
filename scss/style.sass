@@ -7,6 +7,9 @@ body
 body.admin_panel
 	background: #f8f9fe
 
+.mt20
+	margin-top: 20px
+
 a.button
 	padding: 5px 10px
 	font-size: 13px
@@ -18,11 +21,16 @@ a.button
 	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08)
 	&:hover
 		background-color: darken(#5e74e8, 5%)
-		transform: translateY(-5px)		
+		transform: translateY(-5px)
+		color: #fff
+		cursor: pointer	
 
-.container
-	width: 1140px
-	margin: 0 auto
+.btn-primary
+	background-color: #5e74e8 !important
+
+.container-fluid
+	padding-left: 30px !important
+	padding-right: 30px !important
 
 a
 	text-decoration: none
@@ -32,19 +40,9 @@ a
 	display: block
 	min-height: 470px
 	background-image: url('../img/header-bg.png') 	
-
-.header-wrap
-	display: -webkit-flex
-	display: -moz-flex
-	display: -ms-flex
-	display: -o-flex
-	display: flex
-	justify-content: space-between
-	align-items: center
-	min-height: 80px
-
 .header-text
 	margin-top: 20px
+	margin: 20px auto 0 auto
 	text-align: center
 	max-width: 475px
 	h3
@@ -57,6 +55,7 @@ a
 .logo
 	font-weight: 700
 	font-size: 24px
+	margin-top: 20px
 	text-transform: uppercase
 	.fas.fa-exchange-alt
 		font-size: 20px
@@ -64,9 +63,12 @@ a
 		margin-right: 10px
 
 ul.menu
+	display: flex
+	margin-top: 20px
 	list-style-type: none
 	.menu-item
-		display: inline-block
+		display: flex
+		margin-top: 20px
 		margin-right: 15px
 		a
 			color: #fff
@@ -157,7 +159,7 @@ ul.menu
 .main-content
 	margin-left: 250px
 	.container
-		width: 1575px
+		width: 1575px !important
 		margin: 0 auto
 	header
 		background-image: url('../img/admin_header.png')
@@ -170,7 +172,7 @@ ul.menu
 	left: 0
 	height: 100vh
 	padding: 16px 24px
-	width: 202px
+	width: 250px
 	background-color: #fff
 	color: #3a3a3a
 	.logo
@@ -207,7 +209,7 @@ ul.menu
 						background-color: #fb6340
 				&:nth-child(3)
 					&:before
-						background-color: #ffd600
+						background-color: #2AF598
 				&:nth-child(4)
 					&:before
 						background-color: #2AF598		
@@ -225,7 +227,7 @@ ul.menu
 						text-align: center
 					.fas.fa-desktop
 						color: #5e72e4 
-					.fas.fa-ellipsis-v
+					.fas.fa-table
 						color: #fb6340
 					.fas.fa-gavel
 						color: #ffd600
@@ -287,28 +289,24 @@ ul.menu
 	color: #3a3a3a
 .cards-row
 	margin-bottom: 30px
-.cards-row.temp-1-1-1-1
-	display: grid
-	grid-template-columns: 1fr 1fr 1fr 1fr
-	grid-gap: 30px
-	.card_body
-		padding: 16px 24px
-		background-color: #fff
-		border-radius: 10px
-		.title
-			display: flex
-			align-items: center
-			justify-content: space-between
-			margin-bottom: 15px
-			span
-				text-transform: uppercase
-				font-size: 14px
-				font-weight: 700
-				color: #8898aa
-			p
-				margin: 0
-				font-weight: 700
-				font-size: 20px	
+.card_body
+	padding: 16px 24px
+	background-color: #fff
+	border-radius: 10px
+	.title
+		display: flex
+		align-items: center
+		justify-content: space-between
+		margin-bottom: 15px
+		span
+			text-transform: uppercase
+			font-size: 14px
+			font-weight: 700
+			color: #8898aa
+		p
+			margin: 0
+			font-weight: 700
+			font-size: 20px	
 		.icon
 			display: flex
 			align-items: center
@@ -343,48 +341,43 @@ ul.menu
 			font-size: 14px
 			margin: 0
 			color: rgba(#3a3a3a, 0.7)					
-	.card_users 
-		.icon
-			background-color: #fb6340
-	.card_lots 
-		.icon
-			background-color: #ffd600
-	.card_profit1 
-		.icon
-			background-color: #11cdef
+.card_users 
+	.icon
+		background-color: #fb6340 !important
+.card_lots 
+	.icon
+		background-color: #ffd600 !important
+.card_profit1 
+	.icon
+		background-color: #11cdef !important
 
-.cards-row
-	&.temp-8-4
-		display: grid
-		grid-template-columns: 2.6fr 1.4fr
-		grid-gap: 30px
-		.card-table
-			padding: 16px 24px
-			background-color: #fff
-			border-radius: 10px
-			max-height: 490px
-			&.chart-table
-				color: #fff
-				background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important
-				min-height: 458px
-				span
-					color: darken(#fff, 20%)
-					font-size: 10px
-					font-weight: 700
-					text-transform: uppercase
-			&.lots
-				padding: 16px 24px 0 24px
-			.table-header
-				display: flex
-				justify-content: space-between
-				align-items: center
-				margin: 4px 0 20px 0
-				max-height: 30px
-				&.chart-header
-					display: block
-				h3
-					margin: 0
-					font-size: 16px			
+.card-table
+	padding: 16px 0
+	background-color: #fff
+	border-radius: 10px
+	// box-shadow: 0 0 13px #c7c7c7
+	box-shadow: 6px 6px 20px rgba(0,0,0, 0.1)
+	&.chart-table
+		color: #fff
+		background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important
+		span
+			color: darken(#fff, 20%)
+			font-size: 10px
+			font-weight: 700
+			text-transform: uppercase
+	.table-header
+		display: flex
+		padding: 0 24px
+		justify-content: space-between
+		align-items: center
+		margin: 4px 0 20px 0
+		max-height: 30px
+		&.chart-header
+			display: block
+		h3
+			margin: 0
+			font-weight: 700
+			font-size: 16px			
 	&.temp1
 		display: grid !important
 		grid-template-columns: 1fr	
@@ -449,13 +442,11 @@ ul.menu
 table.table
 	margin: 0
 	padding: 0
-	width: 105%
+	width: 100%
 	thead
 		tr
-			display: grid
 			width: 100%
 			background-color: #f6f9fc
-			grid-template-columns: 32% 18% 26% 24%
 			border-top: 1px rgba(#8898aa, 0.4) solid
 			border-bottom: 1px rgba(#8898aa, 0.4) solid
 			th
@@ -468,13 +459,11 @@ table.table
 				text-align: left
 	tbody 
 		tr
-			display: grid
 			width: 100%
-			grid-template-columns: 32% 18% 26% 24%
 			border-bottom: 1px rgba(#8898aa, 0.4) solid
 			&:last-child
 				border-bottom: none
-			th
+			td
 				padding: 16px 24px
 				background-color: #fff
 				color: #3a3a3a
@@ -555,3 +544,28 @@ footer
 		background-color: #fff
 		color: #3a3a3a
 		margin-right: 20px		
+
+	
+	// Toolbar
+
+.tabledit-edit-mode
+	input.input-sm
+		font-size: 10px !important
+	select.input-sm
+		font-size: 10px !important
+		option
+		font-size: 10px !important
+.tabledit-deleted-row.text-muted
+	background-color: #ff00002b	!important
+	td
+		background-color: #ff00002b !important		
+
+
+.datepicker
+	th
+		color: #000 !important
+		font-size: 12px
+	td.day
+		color: #000	
+		font-size: 12px
+
